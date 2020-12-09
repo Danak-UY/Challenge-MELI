@@ -15,7 +15,7 @@ var helmet = require("helmet");
 var cors = require("cors"); // Import routes
 
 
-var searchRouter = require("./routes/search-routes.js"); // Setup default port
+var searchRouter = require("./routes.js"); // Setup default port
 
 
 var PORT = process.env.PORT || 4000; // Create express app

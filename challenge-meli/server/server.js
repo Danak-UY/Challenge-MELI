@@ -9,7 +9,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 // Import routes
-const searchRouter = require("./routes/search-routes.js");
+const searchRouter = require("./routes.js");
 
 // Setup default port
 const PORT = process.env.PORT || 4000;
