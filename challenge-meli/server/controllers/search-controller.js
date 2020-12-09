@@ -7,7 +7,9 @@ exports.searchGet = async (req, res) => {
   const query = req.query.q || "";
   const limit = req.query.limit || 50;
   let meliResponse = await fetch(
-    `${constants.API_ENDPOINT}/search?q=${query}&limit=${limit}`
+    `${
+      constants.API_ENDPOINT + constants.SEARCH_ENDPOINT
+    }/search?q=${query}&limit=${limit}`
   );
 
   if (meliResponse.status == 200) {
@@ -22,8 +24,8 @@ exports.searchGet = async (req, res) => {
       items: [],
     };
 
-    meliJSON?.filters?.[0]?.values?.[0]?.path_from_root?.forEach((filter) => {
-      jsonResponse.categories.push(filter.name);
+    meliJSON?.filters?.[0]?.values?.[0]?.path_from_root?.forEach((category) => {
+      jsonResponse.categories.push(category.name);
     });
 
     meliJSON?.results?.forEach((oneResult) => {
