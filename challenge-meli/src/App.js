@@ -1,22 +1,26 @@
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import SearchResults from "./components/SearchResults";
+import ItemDetail from "./components/ItemDetail";
+
+import "./styles/styles.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/items/:id">
+          <ItemDetail />
+        </Route>
+        <Route path="/items">
+          <SearchResults />
+        </Route>
+        <Route path="/"></Route>
+      </Switch>
+    </Router>
   );
 }
 
