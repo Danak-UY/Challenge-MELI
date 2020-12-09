@@ -9,7 +9,7 @@ function Header() {
     <header>
       <div className="wrapper">
         <img
-          srcset={process.env.PUBLIC_URL + "/assets/images/Logo_ML@2x.png 2x"}
+          srcSet={process.env.PUBLIC_URL + "/assets/images/Logo_ML@2x.png 2x"}
           src={process.env.PUBLIC_URL + "/assets/images/Logo_ML.png"}
           alt="Logo Mercado Libre"
         />
