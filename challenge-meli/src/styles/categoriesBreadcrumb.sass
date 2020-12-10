@@ -1,0 +1,14 @@
+ul
+  list-style: none
+
+  li
+    display: inline
+    margin-right: var(--spacing-md)
+    color: var(--gray)
+
+    &:not(:last-child)::after
+      content:'›'
+      margin-left: var(--spacing-md)
+
+    &:last-of-type
+      font-weight: 600
