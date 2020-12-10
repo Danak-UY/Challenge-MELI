@@ -1,7 +1,14 @@
 import React from "react";
 
 function CategoriesBreadcrumb({ categories }) {
-  return <div></div>;
+  return (
+    <ul>
+      {categories &&
+        categories.map((category) => {
+          return <li>{category}</li>;
+        })}
+    </ul>
+  );
 }
 
 export default CategoriesBreadcrumb;

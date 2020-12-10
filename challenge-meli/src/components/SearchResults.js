@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import API from "./../api";
 import Wrapper from "./Wrapper";
 import Loading from "./Loading";
+import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 import SearchResultsItem from "./SearchResultsItem";
 
 function useQuery() {
@@ -22,8 +23,12 @@ function SearchResults() {
   useEffect(() => {
     setItemsLoading(true);
     setItemsError(false);
-    console.log("search", searchValue);
-    API.get(`items?q=${searchValue}&limit=4`)
+    API.get(`items`, {
+      params: {
+        q: searchValue,
+        limit: 4,
+      },
+    })
       .then((res) => {
         console.log(res);
         if (res.status == 200) {
@@ -41,6 +46,7 @@ function SearchResults() {
   return (
     <Wrapper myClass="page-wrapper">
       {itemsLoading && <Loading />}
+      {!itemsLoading && <CategoriesBreadcrumb categories={searchCategories} />}
       {!itemsLoading &&
         searchItems.map((item) => {
           return <SearchResultsItem key={item.id} item={item} />;

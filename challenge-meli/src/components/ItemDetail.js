@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import API from "./../api";
 import Wrapper from "./Wrapper";
 import Loading from "./Loading";
+import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 
 function ItemDetail() {
   const { id } = useParams();
@@ -13,7 +14,6 @@ function ItemDetail() {
   const [itemCategory, setItemCategory] = useState([]);
 
   useEffect(() => {
-    console.log("search item id", id);
     API.get(`items/${id}`)
       .then((res) => {
         console.log(res);
@@ -32,6 +32,7 @@ function ItemDetail() {
   return (
     <Wrapper myClass="page-wrapper">
       {itemLoading && <Loading />}
+      {!itemLoading && <CategoriesBreadcrumb categories={itemCategory} />}
       {!itemLoading && <h1>{itemInfo.title}</h1>}
     </Wrapper>
   );
