@@ -45,8 +45,8 @@ function SearchResults() {
 
   return (
     <Wrapper myClass="page-wrapper">
+      <CategoriesBreadcrumb categories={searchCategories} />
       {itemsLoading && <Loading />}
-      {!itemsLoading && <CategoriesBreadcrumb categories={searchCategories} />}
       {!itemsLoading &&
         searchItems.map((item) => {
           return <SearchResultsItem key={item.id} item={item} />;

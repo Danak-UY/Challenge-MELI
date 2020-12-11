@@ -13,3 +13,6 @@ ul li:not(:last-child)::after {
 ul li:last-of-type {
   font-weight: 600;
 }
+ul div li::after {
+  opacity: 0.2;
+}

@@ -31,8 +31,8 @@ function ItemDetail() {
 
   return (
     <Wrapper myClass="page-wrapper">
+      <CategoriesBreadcrumb categories={itemCategory} />
       {itemLoading && <Loading />}
-      {!itemLoading && <CategoriesBreadcrumb categories={itemCategory} />}
       {!itemLoading && <h1>{itemInfo.title}</h1>}
     </Wrapper>
   );
