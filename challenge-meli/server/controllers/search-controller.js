@@ -42,6 +42,7 @@ exports.searchGet = async (req, res) => {
         picture: oneResult.thumbnail,
         condition: oneResult.condition,
         free_shipping: oneResult.shipping.free_shipping,
+        address: oneResult.address,
       };
       jsonResponse.items.push(newItem);
     });

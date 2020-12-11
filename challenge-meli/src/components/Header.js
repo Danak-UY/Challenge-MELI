@@ -14,7 +14,7 @@ function Header() {
         <Link to="/" className="meli-logo">
           <ResponsiveImage
             fileDir="images/Logo_ML"
-            imgAltText="Logo Mercado Libre"
+            altText="Logo Mercado Libre"
           />
         </Link>
         <SearchBar />

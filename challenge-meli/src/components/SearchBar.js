@@ -38,7 +38,7 @@ function SearchBar() {
         onChange={handleInputChange}
       />
       <button type="submit">
-        <ResponsiveImage fileDir="icons/ic_Search" imgAltText="" />
+        <ResponsiveImage fileDir="icons/ic_Search" altText="" />
       </button>
     </form>
   );

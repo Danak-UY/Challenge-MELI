@@ -1,0 +1,55 @@
+article {
+  background-color: var(--white);
+  border-radius: var(--spacing-xs);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  display: flex;
+  column-gap: var(--spacing-md);
+}
+article .item-image {
+  flex: 0 0 180px;
+  height: 180px;
+  border-radius: var(--spacing-xs);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+article .item-image img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+article .item-info {
+  flex-grow: 1;
+}
+article .item-info a.item-title {
+  color: var(--dark);
+  text-decoration: none;
+}
+article .item-info a.item-title:hover, article .item-info a.item-title:focus {
+  color: var(--dark);
+  text-decoration: none;
+}
+article .item-info a.item-title h1 {
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+  font-weight: 600;
+  font-size: var(--size-xl);
+}
+article .item-info .item-price {
+  font-size: var(--size-xl);
+  display: flex;
+  column-gap: var(--spacing-sm);
+  align-items: center;
+}
+article .item-city {
+  flex: 0 0 auto;
+  justify-self: flex-end;
+  text-align: right;
+  color: var(--gray);
+  line-height: 1.2;
+  font-size: var(--size-sm);
+}
+article .item-city .city {
+  font-weight: 600;
+}
