@@ -4,4 +4,9 @@ header {
 }
 header > div {
   display: flex;
+  align-items: center;
+  column-gap: var(--spacing-lg);
+}
+header .meli-logo {
+  display: flex;
 }

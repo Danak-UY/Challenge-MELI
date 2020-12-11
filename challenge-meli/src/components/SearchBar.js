@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
+import ResponsiveImage from "./ResponsiveImage";
+
+import "./../styles/searchBar.css";
+
 const slugify = require("slugify");
 
 function SearchBar() {
@@ -34,11 +38,7 @@ function SearchBar() {
         onChange={handleInputChange}
       />
       <button type="submit">
-        <img
-          srcSet={process.env.PUBLIC_URL + "/assets/icons/ic_Search@2x.png 2x"}
-          src={process.env.PUBLIC_URL + "/assets/icons/ic_Search.png"}
-          alt="Logo Mercado Libre"
-        />
+        <ResponsiveImage fileDir="icons/ic_Search" imgAltText="" />
       </button>
     </form>
   );

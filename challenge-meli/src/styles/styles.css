@@ -1,3 +1,7 @@
+html {
+  font-size: var(--spacing-md);
+}
+
 body {
   background-color: var(--gray-light);
   color: var(--dark);

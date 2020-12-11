@@ -4,12 +4,11 @@ ul {
 }
 ul li {
   display: inline;
-  margin-right: var(--spacing-md);
   color: var(--gray);
 }
 ul li:not(:last-child)::after {
   content: "›";
-  margin-left: var(--spacing-md);
+  margin: 0 var(--spacing-sm);
 }
 ul li:last-of-type {
   font-weight: 600;
