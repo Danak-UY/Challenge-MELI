@@ -22,17 +22,19 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <Switch>
-          <Route path="/items/:id">
-            <ItemDetail />
-          </Route>
+        <main>
+          <Switch>
+            <Route path="/items/:id">
+              <ItemDetail />
+            </Route>
 
-          <Route path="/items">
-            <SearchResults />
-          </Route>
+            <Route path="/items">
+              <SearchResults />
+            </Route>
 
-          <Route path="/"></Route>
-        </Switch>
+            <Route path="/"></Route>
+          </Switch>
+        </main>
       </Router>
     </Provider>
   );

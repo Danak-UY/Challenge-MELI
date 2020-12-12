@@ -36,7 +36,7 @@ exports.itemGet = async (req, res) => {
           decimal: resultCurrency.decimal_places,
           symbol: resultCurrency.symbol,
         },
-        picture: meliJSON.thumbnail,
+        picture: meliJSON.pictures?.[0]?.url || meliJSON.thumbnail,
         condition: meliJSON.condition,
         free_shipping: meliJSON.shipping.free_shipping,
         sold_quantity: meliJSON.sold_quantity,

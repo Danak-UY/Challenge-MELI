@@ -18,3 +18,7 @@ body {
 .wrapper.page-wrapper {
   padding: var(--spacing-md) var(--spacing-lg);
 }
+
+.text-capitalize {
+  text-transform: capitalize;
+}

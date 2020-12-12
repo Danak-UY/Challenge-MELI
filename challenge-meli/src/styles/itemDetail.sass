@@ -1,0 +1,44 @@
+.item-grid
+  display: grid
+  grid-auto-rows: auto
+  column-gap: var(--spacing-md)
+  padding: var(--spacing-md)
+  margin: var(--spacing-md) 0
+  background-color: var(--white)
+  border-radius: var(--spacing-xs)
+
+  .item-grid__info    
+    display: grid
+    grid-template-columns: 680px auto
+    column-gap: var(--spacing-md)
+
+    .item-image
+      display: flex
+      justify-content: center
+      align-items: center
+
+      img
+        width: 100%
+        height: auto
+
+    .item-condition
+      margin: var(--spacing-md) 0
+      color: var(--gray)
+
+    .item-title
+      margin-bottom: var(--spacing-md)
+      line-height: 1.2
+      font-weight: 600
+      font-size: var(--size-xl)
+
+    .item-price
+      margin-bottom: var(--spacing-xl)
+      line-height: 1.2
+      font-size: var(--size-xxxl)
+
+  .item-grid__description
+    padding: 0 var(--spacing-md)
+
+    h2
+      margin-bottom: var(--spacing-md)
+      font-size: var(--size-xxl)
