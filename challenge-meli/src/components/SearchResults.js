@@ -14,14 +14,14 @@ function useQuery() {
 function SearchResults() {
   const query = useQuery();
   const searchValue = query.get("search").replace("-", "+");
-  const [itemsLoading, setItemsLoading] = useState(true);
-  const [itemsError, setItemsError] = useState(false);
+  const [componentLoading, setComponentLoading] = useState(true);
+  const [componentError, setComponentError] = useState(false);
   const [searchItems, setSearchItems] = useState([]);
   const [searchCategories, setSearchCategories] = useState([]);
 
   useEffect(() => {
-    setItemsLoading(true);
-    setItemsError(false);
+    setComponentLoading(true);
+    setComponentError(false);
     API.get(`items`, {
       params: {
         q: searchValue,
@@ -30,22 +30,31 @@ function SearchResults() {
     })
       .then((res) => {
         if (res.status == 200) {
-          setSearchCategories(res.data.categories);
-          setSearchItems(res.data.items);
-          setItemsLoading(false);
+          if (res.data.items.length == 0) {
+            setComponentError(true);
+          } else {
+            setSearchCategories(res.data.categories);
+            setSearchItems(res.data.items);
+          }
         }
       })
       .catch((err) => {
-        console.log(err.response);
-        setItemsError(true);
+        console.log(err.response.data);
+        setComponentError(true);
+      })
+      .finally(() => {
+        setComponentLoading(false);
       });
   }, [searchValue]);
 
   return (
     <Wrapper myClass="page-wrapper">
-      <CategoriesBreadcrumb categories={searchCategories} />
-      {itemsLoading && <Loading />}
-      {!itemsLoading &&
+      {!componentError && (
+        <CategoriesBreadcrumb categories={searchCategories} />
+      )}
+      {componentLoading && <Loading />}
+      {!componentLoading &&
+        !componentError &&
         searchItems.map((item) => {
           return <SearchResultsItem key={item.id} item={item} />;
         })}

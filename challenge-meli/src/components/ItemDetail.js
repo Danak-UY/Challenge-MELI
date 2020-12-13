@@ -12,8 +12,8 @@ import "./../styles/itemDetail.css";
 
 function ItemDetail() {
   const { id } = useParams();
-  const [itemLoading, setItemLoading] = useState(true);
-  const [itemError, setItemError] = useState(false);
+  const [componentLoading, setComponentLoading] = useState(true);
+  const [componentError, setComponentError] = useState(false);
   const [itemInfo, setItemInfo] = useState([]);
   const [itemCategory, setItemCategory] = useState([]);
 
@@ -23,26 +23,27 @@ function ItemDetail() {
         if (res.status == 200) {
           setItemCategory(res.data.categories);
           setItemInfo(res.data.item);
-          setItemLoading(false);
-          console.log(itemInfo.description);
         }
       })
       .catch((err) => {
-        console.log(err.response);
-        setItemError(true);
+        console.log(err.response.data);
+        setComponentError(true);
+      })
+      .finally(() => {
+        setComponentLoading(false);
       });
   }, []);
 
   return (
     <Wrapper myClass="page-wrapper">
-      <CategoriesBreadcrumb categories={itemCategory} />
-      {itemLoading && <Loading />}
-      {!itemLoading && itemInfo && (
+      {!componentError && <CategoriesBreadcrumb categories={itemCategory} />}
+      {componentLoading && <Loading />}
+      {!componentLoading && !componentError && (
         <div className="item-grid">
           <div className="item-grid__info">
-            <div className="item-image">
+            <figure className="item-image">
               <img src={itemInfo.picture} alt={itemInfo.title} />
-            </div>
+            </figure>
             <div>
               <p className="item-condition">
                 <span className="text-capitalize">{itemInfo.condition}</span> -{" "}
