@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getIntegerNumber, getDecimalNumber } from "./../utils";
 
 import ResponsiveImage from "./ResponsiveImage";
 import ItemPrice from "./ItemPrice";
@@ -8,9 +7,6 @@ import ItemPrice from "./ItemPrice";
 import "./../styles/searchResultsItem.css";
 
 function SearchResultsItem({ item }) {
-  const priceRounded = getIntegerNumber(item.price.amount);
-  const priceDecimals = getDecimalNumber(item.price.amount);
-
   return (
     <article>
       <Link to={`/items/${item.id}`} className="item-image">

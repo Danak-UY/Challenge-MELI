@@ -46,3 +46,6 @@
   margin-bottom: var(--spacing-md);
   font-size: var(--size-xxl);
 }
+.item-grid .item-grid__description p {
+  white-space: pre-line;
+}

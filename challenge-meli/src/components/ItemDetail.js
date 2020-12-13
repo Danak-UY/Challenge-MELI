@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import numberFormatter from "number-formatter";
-import { getIntegerNumber, getDecimalNumber } from "./../utils";
 
 import API from "./../api";
 import Wrapper from "./Wrapper";
