@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import numberFormatter from "number-formatter";
+import { getIntegerNumber, getDecimalNumber } from "./../utils";
 
 import ResponsiveImage from "./ResponsiveImage";
+import ItemPrice from "./ItemPrice";
 
 import "./../styles/searchResultsItem.css";
 
 function SearchResultsItem({ item }) {
+  const priceRounded = getIntegerNumber(item.price.amount);
+  const priceDecimals = getDecimalNumber(item.price.amount);
+
   return (
     <article>
       <Link to={`/items/${item.id}`} className="item-image">
@@ -18,7 +22,7 @@ function SearchResultsItem({ item }) {
         </Link>
         <p className="item-price">
           <span>{item.price.symbol}</span>
-          {numberFormatter("#.##0,#", item.price.amount)}
+          <ItemPrice priceInfo={item.price} showDecimals={false} />
           {item.free_shipping && (
             <ResponsiveImage
               fileDir="icons/ic_Shipping"

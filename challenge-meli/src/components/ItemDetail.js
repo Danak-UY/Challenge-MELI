@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import numberFormatter from "number-formatter";
+import { getIntegerNumber, getDecimalNumber } from "./../utils";
 
 import API from "./../api";
 import Wrapper from "./Wrapper";
 import Loading from "./Loading";
 import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
+import ItemPrice from "./ItemPrice";
 
 import "./../styles/itemDetail.css";
 
@@ -19,7 +21,6 @@ function ItemDetail() {
   useEffect(() => {
     API.get(`items/${id}`)
       .then((res) => {
-        console.log(res);
         if (res.status == 200) {
           setItemCategory(res.data.categories);
           setItemInfo(res.data.item);
@@ -51,15 +52,16 @@ function ItemDetail() {
               <h1 className="item-title">{itemInfo.title}</h1>
               <p className="item-price">
                 <span>{itemInfo.price.symbol}</span>
-                {numberFormatter("#.##0,#", itemInfo.price.amount)}
-                <span className="price-decimal"></span>
+                <ItemPrice priceInfo={itemInfo.price} showDecimals={true} />
               </p>
             </div>
           </div>
-          <div className="item-grid__description">
-            <h2>Descripción del producto</h2>
-            <p>{itemInfo.description}</p>
-          </div>
+          {itemInfo.description && (
+            <div className="item-grid__description">
+              <h2>Descripción del producto</h2>
+              <p>{itemInfo.description}</p>
+            </div>
+          )}
         </div>
       )}
     </Wrapper>

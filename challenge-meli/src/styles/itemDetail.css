@@ -32,6 +32,9 @@
   font-size: var(--size-xl);
 }
 .item-grid .item-grid__info .item-price {
+  display: flex;
+  column-gap: var(--spacing-sm);
+  align-items: center;
   margin-bottom: var(--spacing-xl);
   line-height: 1.2;
   font-size: var(--size-xxxl);

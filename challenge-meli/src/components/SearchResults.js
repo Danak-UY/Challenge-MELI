@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import API from "./../api";
@@ -30,7 +29,6 @@ function SearchResults() {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status == 200) {
           setSearchCategories(res.data.categories);
           setSearchItems(res.data.items);
