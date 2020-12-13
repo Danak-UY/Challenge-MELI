@@ -8,6 +8,7 @@ import Wrapper from "./Wrapper";
 import Loading from "./Loading";
 import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 import ItemPrice from "./ItemPrice";
+import ActionButton from "./ActionButton";
 
 import "./../styles/itemDetail.css";
 
@@ -54,6 +55,7 @@ function ItemDetail() {
                 <span>{itemInfo.price.symbol}</span>
                 <ItemPrice priceInfo={itemInfo.price} showDecimals={true} />
               </p>
+              <ActionButton label="Comprar" variant="primary" />
             </div>
           </div>
           {itemInfo.description && (
