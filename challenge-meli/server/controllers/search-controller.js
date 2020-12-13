@@ -25,7 +25,7 @@ exports.searchGet = async (req, res) => {
       items: [],
     };
 
-    meliJSON.filters[0].values[0].path_from_root.forEach((category) => {
+    meliJSON?.filters?.[0]?.values?.[0]?.path_from_root?.forEach((category) => {
       jsonResponse.categories.push(category.name);
     });
 
@@ -36,7 +36,7 @@ exports.searchGet = async (req, res) => {
       );
     }
 
-    meliJSON.results.forEach((oneResult) => {
+    meliJSON?.results?.forEach((oneResult) => {
       let resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
       let newItem = {
         id: oneResult.id,

@@ -36,7 +36,7 @@ exports.itemGet = async (req, res) => {
           decimal: resultCurrency.decimal_places,
           symbol: resultCurrency.symbol,
         },
-        picture: meliJSON.pictures[0].url || meliJSON.thumbnail,
+        picture: meliJSON?.pictures?.[0]?.url || meliJSON.thumbnail,
         condition: meliJSON.condition,
         free_shipping: meliJSON.shipping.free_shipping,
         sold_quantity: meliJSON.sold_quantity,
@@ -44,7 +44,7 @@ exports.itemGet = async (req, res) => {
       },
     };
 
-    meliJSONCategory.path_from_root.forEach((category) => {
+    meliJSONCategory?.path_from_root?.forEach((category) => {
       jsonResponse.categories.push(category.name);
     });
 
