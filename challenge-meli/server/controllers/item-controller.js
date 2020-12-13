@@ -44,9 +44,13 @@ exports.itemGet = async (req, res) => {
       },
     };
 
-    meliJSONCategory.path_from_root.forEach((category) => {
-      jsonResponse.categories.push(category.name);
-    });
+    try {
+      meliJSONCategory.path_from_root.forEach((category) => {
+        jsonResponse.categories.push(category.name);
+      });
+    } catch {
+      jsonResponse.categories.push("Sin Categoría");
+    }
 
     res.json(jsonResponse);
   } else {

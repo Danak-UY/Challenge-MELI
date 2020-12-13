@@ -72,9 +72,15 @@ exports.itemGet = function _callee(req, res) {
               description: meliJSONDescription.plain_text
             }
           };
-          meliJSONCategory.path_from_root.forEach(function (category) {
-            jsonResponse.categories.push(category.name);
-          });
+
+          try {
+            meliJSONCategory.path_from_root.forEach(function (category) {
+              jsonResponse.categories.push(category.name);
+            });
+          } catch (_unused) {
+            jsonResponse.categories.push("Sin Categoría");
+          }
+
           res.json(jsonResponse);
           _context.next = 27;
           break;
