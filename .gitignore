@@ -1,1 +1,10 @@
 challenge-meli/node_modules
+challenge-meli/server/node_modules
+challenge-meli/.env.*
+
+# testing
+challenge-meli/coverage
+
+# production
+challenge-meli/build
+challenge-meli/server/build

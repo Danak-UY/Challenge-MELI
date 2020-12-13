@@ -26,12 +26,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV && process.env.NODE_ENV !== "development") {
-  app.get("*", (req, res) => {
-    res.sendFile("build/index.html", { root: __dirname });
-  });
-}
-
 // Implement route for '/api' endpoint
 app.use("/api", searchRouter);
 

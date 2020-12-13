@@ -1,0 +1,17 @@
+ul
+  list-style: none
+  font-size: var(--size-sm)
+
+  li
+    display: inline
+    color: var(--gray)
+
+    &:not(:last-child)::after
+      content:'›'
+      margin: 0 var(--spacing-sm)
+
+    &:last-of-type
+      font-weight: 600
+
+  div li::after
+    opacity: .4

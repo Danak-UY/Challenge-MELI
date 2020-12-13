@@ -1,0 +1,19 @@
+@charset "UTF-8";
+ul {
+  list-style: none;
+  font-size: var(--size-sm);
+}
+ul li {
+  display: inline;
+  color: var(--gray);
+}
+ul li:not(:last-child)::after {
+  content: "›";
+  margin: 0 var(--spacing-sm);
+}
+ul li:last-of-type {
+  font-weight: 600;
+}
+ul div li::after {
+  opacity: 0.4;
+}

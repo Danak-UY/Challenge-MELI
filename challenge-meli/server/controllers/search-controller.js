@@ -1,10 +1,11 @@
 const fetch = require("node-fetch");
 
-const CURRENCY_DATA = require("../../currencies-data.json");
-const constants = require("../../constants.js");
+const CURRENCY_DATA = require("./../currencies-data.json");
+const constants = require("./../constants.js");
+const helper = require("./../helper.js");
 
 exports.searchGet = async (req, res) => {
-  const query = req.query.q || "";
+  const query = req.query.q.replace(/[-\s]/g, "+") || "";
   const limit = req.query.limit || 50;
   let meliResponse = await fetch(
     `${
@@ -24,11 +25,18 @@ exports.searchGet = async (req, res) => {
       items: [],
     };
 
-    meliJSON?.filters?.[0]?.values?.[0]?.path_from_root?.forEach((category) => {
+    meliJSON.filters[0].values[0].path_from_root.forEach((category) => {
       jsonResponse.categories.push(category.name);
     });
 
-    meliJSON?.results?.forEach((oneResult) => {
+    if (jsonResponse.categories.length == 0) {
+      jsonResponse.categories.push(
+        helper.getMaxResultCategory(meliJSON.available_filters) ||
+          "No Cateogries"
+      );
+    }
+
+    meliJSON.results.forEach((oneResult) => {
       let resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
       let newItem = {
         id: oneResult.id,
@@ -42,6 +50,7 @@ exports.searchGet = async (req, res) => {
         picture: oneResult.thumbnail,
         condition: oneResult.condition,
         free_shipping: oneResult.shipping.free_shipping,
+        address: oneResult.address,
       };
       jsonResponse.items.push(newItem);
     });

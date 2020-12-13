@@ -1,12 +1,12 @@
 const express = require("express");
 
-const searchControllers = require("./controllers/search-controller.js");
-const itemControllers = require("./controllers/item-controller.js");
+const searchController = require("./controllers/search-controller.js");
+const itemController = require("./controllers/item-controller.js");
 
 const router = express.Router();
 
-router.get("/items", searchControllers.searchGet);
-router.get("/items/:id", itemControllers.itemGet);
+router.get("/items", searchController.searchGet);
+router.get("/items/:id", itemController.itemGet);
 
 // Export router
 module.exports = router;

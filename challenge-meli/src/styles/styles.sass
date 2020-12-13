@@ -1,0 +1,38 @@
+html
+  font-size: 16px
+
+body
+  background-color: var(--gray-light)
+  color: var(--dark)
+  font-family: var(--font-family)
+  min-height: 100vh
+
+.wrapper
+  width: 100%
+  max-width: 1080px
+  margin: 0px auto
+  padding: 0 var(--spacing-md)
+
+  &.page-wrapper
+    padding: var(--spacing-md) var(--spacing-lg)
+
+a,
+a:hover,
+a:focus
+  text-decoration: none
+
+.text-capitalize
+  text-transform: capitalize
+
+.assistive-text
+  border: 0
+  clip: rect(0 0 0 0)
+  clip-path: polygon(0px 0px, 0px 0px, 0px 0px)
+  -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+  white-space: nowrap
