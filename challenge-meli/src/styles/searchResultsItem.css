@@ -63,6 +63,10 @@ article .item-city .city {
   article {
     flex-direction: column;
   }
+  article .item-image {
+    flex: initial;
+    height: auto;
+  }
   article .item-city {
     align-self: flex-start;
     text-align: left;
