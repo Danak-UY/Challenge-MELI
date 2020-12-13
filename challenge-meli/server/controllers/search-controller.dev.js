@@ -2,9 +2,11 @@
 
 var fetch = require("node-fetch");
 
-var CURRENCY_DATA = require("../../currencies-data.json");
+var CURRENCY_DATA = require("./../currencies-data.json");
 
-var API_ENDPOINT = require("../../constants.js");
+var constants = require("./../constants.js");
+
+var helper = require("./../helper.js");
 
 exports.searchGet = function _callee(req, res) {
   var query, limit, meliResponse, meliJSON, jsonResponse;
@@ -12,10 +14,10 @@ exports.searchGet = function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          query = req.query.q;
-          limit = req.query.limit || 0;
+          query = req.query.q.replace(/[-\s]/g, "+") || "";
+          limit = req.query.limit || 50;
           _context.next = 4;
-          return regeneratorRuntime.awrap(fetch("https://api.mercadolibre.com/sites/MLA/search?q=".concat(req.query.q, "&limit=").concat(req.query.limit)));
+          return regeneratorRuntime.awrap(fetch("".concat(constants.API_ENDPOINT + constants.SEARCH_ENDPOINT, "/search?q=").concat(query, "&limit=").concat(limit)));
 
         case 4:
           meliResponse = _context.sent;
@@ -30,7 +32,6 @@ exports.searchGet = function _callee(req, res) {
 
         case 8:
           meliJSON = _context.sent;
-          console.log(API_ENDPOINT);
           jsonResponse = {
             author: {
               name: "Martín",
@@ -39,9 +40,14 @@ exports.searchGet = function _callee(req, res) {
             categories: [],
             items: []
           };
-          meliJSON.filters[0].values[0].path_from_root.forEach(function (filter) {
-            jsonResponse.categories.push(filter.name);
+          meliJSON.filters[0].values[0].path_from_root.forEach(function (category) {
+            jsonResponse.categories.push(category.name);
           });
+
+          if (jsonResponse.categories.length == 0) {
+            jsonResponse.categories.push(helper.getMaxResultCategory(meliJSON.available_filters) || "No Cateogries");
+          }
+
           meliJSON.results.forEach(function (oneResult) {
             var resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
             var newItem = {
@@ -55,7 +61,8 @@ exports.searchGet = function _callee(req, res) {
               },
               picture: oneResult.thumbnail,
               condition: oneResult.condition,
-              free_shipping: oneResult.shipping.free_shipping
+              free_shipping: oneResult.shipping.free_shipping,
+              address: oneResult.address
             };
             jsonResponse.items.push(newItem);
           });
