@@ -23,6 +23,9 @@ function SearchResults() {
   useEffect(() => {
     setComponentLoading(true);
     setComponentError(false);
+    setSearchCategories([]);
+    setSearchItems([]);
+
     API.get(`items`, {
       params: {
         q: searchValue,

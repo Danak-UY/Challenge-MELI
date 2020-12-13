@@ -23,7 +23,7 @@ exports.searchGet = function _callee(req, res) {
           meliResponse = _context.sent;
 
           if (!(meliResponse.status == 200)) {
-            _context.next = 16;
+            _context.next = 15;
             break;
           }
 
@@ -40,40 +40,46 @@ exports.searchGet = function _callee(req, res) {
             categories: [],
             items: []
           };
-          meliJSON.filters[0].values[0].path_from_root.forEach(function (category) {
-            jsonResponse.categories.push(category.name);
-          });
 
-          if (jsonResponse.categories.length == 0) {
-            jsonResponse.categories.push(helper.getMaxResultCategory(meliJSON.available_filters) || "No Cateogries");
+          try {
+            meliJSON.filters[0].values[0].path_from_root.forEach(function (category) {
+              jsonResponse.categories.push(category.name);
+            });
+          } catch (_unused) {
+            jsonResponse.categories.push(helper.getMaxResultCategory(meliJSON.available_filters) || "Sin Categoría");
           }
 
-          meliJSON.results.forEach(function (oneResult) {
-            var resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
-            var newItem = {
-              id: oneResult.id,
-              title: oneResult.title,
-              price: {
-                currency: resultCurrency.id,
-                amount: oneResult.price,
-                decimal: resultCurrency.decimal_places,
-                symbol: resultCurrency.symbol
-              },
-              picture: oneResult.thumbnail,
-              condition: oneResult.condition,
-              free_shipping: oneResult.shipping.free_shipping,
-              address: oneResult.address
-            };
-            jsonResponse.items.push(newItem);
-          });
+          try {
+            meliJSON.results.forEach(function (oneResult) {
+              var resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
+              var newItem = {
+                id: oneResult.id,
+                title: oneResult.title,
+                price: {
+                  currency: resultCurrency.id,
+                  amount: oneResult.price,
+                  decimal: resultCurrency.decimal_places,
+                  symbol: resultCurrency.symbol
+                },
+                picture: oneResult.thumbnail,
+                condition: oneResult.condition,
+                free_shipping: oneResult.shipping.free_shipping,
+                address: oneResult.address
+              };
+              jsonResponse.items.push(newItem);
+            });
+          } catch (_unused2) {
+            res.status(400).send("Bad Request");
+          }
+
           res.json(jsonResponse);
-          _context.next = 17;
+          _context.next = 16;
           break;
 
-        case 16:
+        case 15:
           res.status(400).send("Bad Request");
 
-        case 17:
+        case 16:
         case "end":
           return _context.stop();
       }

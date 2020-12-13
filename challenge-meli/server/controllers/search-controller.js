@@ -25,35 +25,39 @@ exports.searchGet = async (req, res) => {
       items: [],
     };
 
-    meliJSON?.filters?.[0]?.values?.[0]?.path_from_root?.forEach((category) => {
-      jsonResponse.categories.push(category.name);
-    });
-
-    if (jsonResponse.categories.length == 0) {
+    try {
+      meliJSON.filters[0].values[0].path_from_root.forEach((category) => {
+        jsonResponse.categories.push(category.name);
+      });
+    } catch {
       jsonResponse.categories.push(
         helper.getMaxResultCategory(meliJSON.available_filters) ||
-          "No Cateogries"
+          "Sin Categoría"
       );
     }
 
-    meliJSON?.results?.forEach((oneResult) => {
-      let resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
-      let newItem = {
-        id: oneResult.id,
-        title: oneResult.title,
-        price: {
-          currency: resultCurrency.id,
-          amount: oneResult.price,
-          decimal: resultCurrency.decimal_places,
-          symbol: resultCurrency.symbol,
-        },
-        picture: oneResult.thumbnail,
-        condition: oneResult.condition,
-        free_shipping: oneResult.shipping.free_shipping,
-        address: oneResult.address,
-      };
-      jsonResponse.items.push(newItem);
-    });
+    try {
+      meliJSON.results.forEach((oneResult) => {
+        let resultCurrency = CURRENCY_DATA[oneResult.currency_id.toLowerCase()];
+        let newItem = {
+          id: oneResult.id,
+          title: oneResult.title,
+          price: {
+            currency: resultCurrency.id,
+            amount: oneResult.price,
+            decimal: resultCurrency.decimal_places,
+            symbol: resultCurrency.symbol,
+          },
+          picture: oneResult.thumbnail,
+          condition: oneResult.condition,
+          free_shipping: oneResult.shipping.free_shipping,
+          address: oneResult.address,
+        };
+        jsonResponse.items.push(newItem);
+      });
+    } catch {
+      res.status(400).send("Bad Request");
+    }
 
     res.json(jsonResponse);
   } else {
