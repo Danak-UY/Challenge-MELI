@@ -4,7 +4,12 @@ article
   padding: var(--spacing-md)
   margin: var(--spacing-md) 0
   display: flex
-  column-gap: var(--spacing-md)
+  gap: var(--spacing-md)
+  box-shadow: 0 1px 1px 0 rgba(45,45,45,.1)
+  transition: box-shadow .1s ease-out
+
+  &:hover
+    box-shadow: 0 4px 8px 0 rgba(45,45,45,.12),0 1px 3px 0 rgba(45,45,45,.08)
 
   .item-image
     flex: 0 0 180px
@@ -54,3 +59,10 @@ article
 
     .city
       font-weight: 600
+
+  @media only screen and (max-width: 576px)
+    flex-direction: column
+
+    .item-city
+      align-self: flex-start
+      text-align: left
