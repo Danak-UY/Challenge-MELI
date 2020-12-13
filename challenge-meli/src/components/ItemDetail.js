@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 import ItemPrice from "./ItemPrice";
 import ActionButton from "./ActionButton";
+import ErrorMessage from "./ErrorMessage";
 
 import "./../styles/itemDetail.css";
 
@@ -20,7 +21,7 @@ function ItemDetail() {
   useEffect(() => {
     API.get(`items/${id}`)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setItemCategory(res.data.categories);
           setItemInfo(res.data.item);
         }
@@ -32,10 +33,11 @@ function ItemDetail() {
       .finally(() => {
         setComponentLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <Wrapper myClass="page-wrapper">
+      {componentError && <ErrorMessage title="Ese producto no existe" />}
       {!componentError && <CategoriesBreadcrumb categories={itemCategory} />}
       {componentLoading && <Loading />}
       {!componentLoading && !componentError && (

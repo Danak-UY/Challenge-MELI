@@ -6,6 +6,7 @@ import Wrapper from "./Wrapper";
 import Loading from "./Loading";
 import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 import SearchResultsItem from "./SearchResultsItem";
+import ErrorMessage from "./ErrorMessage";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -13,7 +14,7 @@ function useQuery() {
 
 function SearchResults() {
   const query = useQuery();
-  const searchValue = query.get("search").replace("-", "+");
+  const searchValue = query?.get("search");
   const [componentLoading, setComponentLoading] = useState(true);
   const [componentError, setComponentError] = useState(false);
   const [searchItems, setSearchItems] = useState([]);
@@ -29,8 +30,8 @@ function SearchResults() {
       },
     })
       .then((res) => {
-        if (res.status == 200) {
-          if (res.data.items.length == 0) {
+        if (res.status === 200) {
+          if (res.data.items.length === 0) {
             setComponentError(true);
           } else {
             setSearchCategories(res.data.categories);
@@ -49,6 +50,9 @@ function SearchResults() {
 
   return (
     <Wrapper myClass="page-wrapper">
+      {componentError && (
+        <ErrorMessage title="No hubo resultados de busqueda" />
+      )}
       {!componentError && (
         <CategoriesBreadcrumb categories={searchCategories} />
       )}

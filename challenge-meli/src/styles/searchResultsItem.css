@@ -30,11 +30,9 @@ article .item-info {
 }
 article .item-info a.item-title {
   color: var(--dark);
-  text-decoration: none;
 }
 article .item-info a.item-title:hover, article .item-info a.item-title:focus {
   color: var(--dark);
-  text-decoration: none;
 }
 article .item-info a.item-title h1 {
   margin-bottom: var(--spacing-sm);

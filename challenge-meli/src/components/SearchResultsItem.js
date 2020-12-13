@@ -20,10 +20,10 @@ function SearchResultsItem({ item }) {
           <span>{item.price.symbol}</span>
           <ItemPrice priceInfo={item.price} showDecimals={false} />
           {item.free_shipping && (
-            <ResponsiveImage
-              fileDir="icons/ic_Shipping"
-              altText="Con Envio Gratis"
-            />
+            <>
+              <span className="assistive-text">Con envio gratis</span>
+              <ResponsiveImage fileDir="icons/ic_Shipping" altText="" />
+            </>
           )}
         </p>
       </div>

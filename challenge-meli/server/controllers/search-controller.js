@@ -5,7 +5,7 @@ const constants = require("./../../constants.js");
 const helper = require("./../helper.js");
 
 exports.searchGet = async (req, res) => {
-  const query = req.query.q || "";
+  const query = req.query.q.replace(/[-\s]/g, "+") || "";
   const limit = req.query.limit || 50;
   let meliResponse = await fetch(
     `${
