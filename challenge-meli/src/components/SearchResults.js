@@ -8,6 +8,8 @@ import CategoriesBreadcrumb from "./CategoriesBreadcrumb";
 import SearchResultsItem from "./SearchResultsItem";
 import ErrorMessage from "./ErrorMessage";
 
+import "./../styles/searchResults.css";
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -60,11 +62,13 @@ function SearchResults() {
         <CategoriesBreadcrumb categories={searchCategories} />
       )}
       {componentLoading && <Loading />}
-      {!componentLoading &&
-        !componentError &&
-        searchItems.map((item) => {
-          return <SearchResultsItem key={item.id} item={item} />;
-        })}
+      {!componentLoading && !componentError && (
+        <section className="results-container">
+          {searchItems.map((item) => {
+            return <SearchResultsItem key={item.id} item={item} />;
+          })}
+        </section>
+      )}
     </Wrapper>
   );
 }

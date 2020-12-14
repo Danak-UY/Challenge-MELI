@@ -1,8 +1,10 @@
+@import '../breakpointVariables'
+  
 .item-grid
   display: grid
   grid-auto-rows: auto
   grid-gap: var(--spacing-md)
-  padding: var(--spacing-md)
+  padding: var(--spacing-xl)
   margin: var(--spacing-md) 0
   background-color: var(--white)
   border-radius: var(--spacing-xs)
@@ -13,13 +15,13 @@
     grid-template-columns: var(--item-detail-image) auto
     column-gap: var(--spacing-md)
 
-    @media only screen and (max-width: 1080px)
+    @media only screen and (max-width:  $breakpoint-xl)
       --item-detail-image: 480px
 
-    @media only screen and (max-width: 920px)
+    @media only screen and (max-width:  $breakpoint-lg)
       --item-detail-image: 320px
 
-    @media only screen and (max-width: 768px)
+    @media only screen and (max-width:  $breakpoint-md)
       --item-detail-image: 100%
       grid-template-columns: 1fr
 
@@ -32,13 +34,16 @@
       min-height: calc(var(--item-detail-image) * 0.8)
       max-height: var(--item-detail-image)
 
+      @media only screen and (max-width:  $breakpoint-xl)
+        max-height: 320px
+
       img
         width: 100%
         height: 100%
         object-fit: contain
 
     .item-condition
-      margin: var(--spacing-md) 0
+      margin-bottom: var(--spacing-md)
       color: var(--gray)
 
     .item-title
@@ -56,8 +61,6 @@
       font-size: var(--size-xxxl)
 
   .item-grid__description
-    padding: 0 var(--spacing-md)
-
     h2
       margin-bottom: var(--spacing-md)
       font-size: var(--size-xxl)
