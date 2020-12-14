@@ -1,0 +1,6 @@
+.results-container {
+  background-color: var(--white);
+  border-radius: var(--spacing-xs);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+}

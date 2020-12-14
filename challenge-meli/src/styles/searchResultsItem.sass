@@ -1,15 +1,20 @@
+@import '../breakpointVariables'
+  
 article
-  background-color: var(--white)
-  border-radius: var(--spacing-xs)
   padding: var(--spacing-md)
-  margin: var(--spacing-md) 0
   display: flex
   gap: var(--spacing-md)
-  box-shadow: 0 1px 1px 0 rgba(45,45,45,.1)
-  transition: box-shadow .1s ease-out
+  border-bottom: 1px solid var(--gray-light)
 
-  &:hover
-    box-shadow: 0 4px 8px 0 rgba(45,45,45,.12),0 1px 3px 0 rgba(45,45,45,.08)
+  &:first-of-type
+    padding-top: 0px
+
+  &:last-of-type
+    border: 0px
+    padding-bottom: 0px
+
+  @media only screen and (max-width: $breakpoint-sm)
+    flex-direction: column
 
   .item-image
     flex: 0 0 180px
@@ -19,6 +24,11 @@ article
     display: flex
     align-items: center
     justify-content: center
+
+    @media only screen and (max-width: $breakpoint-sm)
+      flex: initial
+      height: auto
+      max-height: 320px
 
     img
       width: 100%
@@ -55,16 +65,9 @@ article
     line-height: 1.2
     font-size: var(--size-sm)
 
-    .city
-      font-weight: 600
-
-  @media only screen and (max-width: 576px)
-    flex-direction: column
-
-    .item-image
-      flex: initial
-      height: auto
-
-    .item-city
+    @media only screen and (max-width: $breakpoint-sm)
       align-self: flex-start
       text-align: left
+
+    .city
+      font-weight: 600
